@@ -125,7 +125,7 @@ function Todo$Todo(Props) {
                 }), todos.length === 0 ? React.createElement("p", undefined, "You have not added any todos yet") : React.createElement("ol", undefined, todos.map(function (todo, i) {
                         return React.createElement("div", {
                                     style: {
-                                      background: "steelblue",
+                                      background: isComplete(todo) ? "green" : "steelblue",
                                       color: "white",
                                       fontSize: "1.5rem",
                                       margin: "1rem 0",

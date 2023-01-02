@@ -86,7 +86,7 @@ module Todo = {
         } else {
           <ol>
             {todos->Js.Array2.mapi((todo, i) => {
-              <div style={ReactDOM.Style.make(~background="steelblue", ~color="white", ~padding="1rem", ~margin="1rem 0", ~fontSize="1.5rem",())}>
+              <div style={ReactDOM.Style.make(~background={TodoItem.isComplete(todo) ? "green": "steelblue"}, ~color="white", ~padding="1rem", ~margin="1rem 0", ~fontSize="1.5rem",())}>
               <TodoItem key={i->Js.Int.toString} todo={todo} onToggle={() => dispatch(Toggle({id: i}))} />
               {"   " -> React.string}
               <button onClick={_ => dispatch(Remove({id: i}))}>{React.string("🗑️")}</button>
