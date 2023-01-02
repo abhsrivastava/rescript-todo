@@ -40,7 +40,7 @@ module Todo = {
   let defaultState = {todos: [], input: ""}
 
   type action = 
-    Add 
+    | Add 
     | Remove({id: int})
     | Toggle({id: int})
     | InputChange({value: string})
@@ -72,7 +72,7 @@ module Todo = {
         value={input}
         onChange={event => {
           let value = ReactEvent.Form.target(event)["value"]
-          dispatch(InputChange({value: value}))
+          {value: value}->InputChange->dispatch
         }} 
         onKeyPress={event => 
           if ReactEvent.Keyboard.key(event) === "Enter" {
@@ -84,7 +84,11 @@ module Todo = {
         } else {
           <ol>
             {todos->Js.Array2.mapi((todo, i) => {
+              <div style={ReactDOM.Style.make(~background="steelblue", ~color="white", ~padding="1rem", ~margin="1rem 0", ~fontSize="1.5rem",())}>
               <TodoItem key={i->Js.Int.toString} todo={todo} onToggle={() => dispatch(Toggle({id: i}))} />
+              {"   " -> React.string}
+              <button onClick={_ => dispatch(Remove({id: i}))}>{React.string("🗑️")}</button>
+              </div>
             })->React.array}
           </ol>
         }}

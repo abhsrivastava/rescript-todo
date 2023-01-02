@@ -116,16 +116,31 @@ function Todo$Todo(Props) {
                           });
                     })
                 }), todos.length === 0 ? React.createElement("p", undefined, "You have not added any todos yet") : React.createElement("ol", undefined, todos.map(function (todo, i) {
-                        return React.createElement(Todo$TodoItem, {
-                                    onToggle: (function (param) {
-                                        Curry._1(dispatch, {
-                                              TAG: /* Toggle */1,
-                                              id: i
-                                            });
-                                      }),
-                                    todo: todo,
-                                    key: i.toString()
-                                  });
+                        return React.createElement("div", {
+                                    style: {
+                                      background: "steelblue",
+                                      color: "white",
+                                      fontSize: "1.5rem",
+                                      margin: "1rem 0",
+                                      padding: "1rem"
+                                    }
+                                  }, React.createElement(Todo$TodoItem, {
+                                        onToggle: (function (param) {
+                                            Curry._1(dispatch, {
+                                                  TAG: /* Toggle */1,
+                                                  id: i
+                                                });
+                                          }),
+                                        todo: todo,
+                                        key: i.toString()
+                                      }), "   ", React.createElement("button", {
+                                        onClick: (function (param) {
+                                            Curry._1(dispatch, {
+                                                  TAG: /* Remove */0,
+                                                  id: i
+                                                });
+                                          })
+                                      }, "🗑️"));
                       })));
 }
 
