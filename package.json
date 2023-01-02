@@ -1,0 +1,22 @@
+{
+  "name": "todo",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "npx rescript",
+    "clean": "npx rescript clean -with-deps",
+    "start": "npx rescript build -w",
+    "serve": "moduleserve src/ --port 8000"
+  },
+  "keywords": [
+    "ReScript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "moduleserve": "^0.9.1",
+    "rescript": "^10.0.1"
+  },
+  "dependencies": {
+    "@rescript/react": "^0.10.3"
+  }
+}
