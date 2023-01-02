@@ -44,6 +44,7 @@ module Todo = {
     | Remove({id: int})
     | Toggle({id: int})
     | InputChange({value: string})
+    | ClearAll
 
   let reducer = (state, action) => 
     switch action {
@@ -62,6 +63,7 @@ module Todo = {
           }
         )}
       | InputChange({value}) => {...state, input: value}
+      | ClearAll => {input: "", todos: []}
     }
 
   @react.component
@@ -92,6 +94,7 @@ module Todo = {
             })->React.array}
           </ol>
         }}
+        <button onClick={_ => dispatch(ClearAll)}>{React.string("Clear all")}</button>
     </div>
   }
 }

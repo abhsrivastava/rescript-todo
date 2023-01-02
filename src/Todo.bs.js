@@ -57,13 +57,20 @@ var defaultState = {
 
 function reducer(state, action) {
   if (typeof action === "number") {
-    return {
-            todos: state.todos.concat([{
-                    TAG: /* InComplete */1,
-                    content: state.input
-                  }]),
-            input: ""
-          };
+    if (action === /* Add */0) {
+      return {
+              todos: state.todos.concat([{
+                      TAG: /* InComplete */1,
+                      content: state.input
+                    }]),
+              input: ""
+            };
+    } else {
+      return {
+              todos: [],
+              input: ""
+            };
+    }
   }
   switch (action.TAG | 0) {
     case /* Remove */0 :
@@ -141,7 +148,11 @@ function Todo$Todo(Props) {
                                                 });
                                           })
                                       }, "🗑️"));
-                      })));
+                      })), React.createElement("button", {
+                  onClick: (function (param) {
+                      Curry._1(dispatch, /* ClearAll */1);
+                    })
+                }, "Clear all"));
 }
 
 var Todo = {
